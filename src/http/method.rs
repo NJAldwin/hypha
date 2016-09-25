@@ -1,7 +1,7 @@
 use std::fmt;
 use std::str;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 pub enum Method {
     Options,
     Get,
@@ -13,20 +13,30 @@ pub enum Method {
     Connect,
 }
 
+impl Default for Method {
+    fn default() -> Method {
+        Method::Get
+    }
+}
+
+impl AsRef<str> for Method {
+    fn as_ref(&self) -> &str {
+        match *self {
+            Method::Options => "OPTIONS",
+            Method::Get => "GET",
+            Method::Head => "HEAD",
+            Method::Post => "POST",
+            Method::Put => "PUT",
+            Method::Delete => "DELETE",
+            Method::Trace => "TRACE",
+            Method::Connect => "CONNECT",
+        }
+    }
+}
+
 impl fmt::Display for Method {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f,
-               "{}",
-               match *self {
-                   Method::Options => "OPTIONS",
-                   Method::Get => "GET",
-                   Method::Head => "HEAD",
-                   Method::Post => "POST",
-                   Method::Put => "PUT",
-                   Method::Delete => "DELETE",
-                   Method::Trace => "TRACE",
-                   Method::Connect => "CONNECT",
-               })
+        f.write_str(&self.as_ref())
     }
 }
 

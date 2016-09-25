@@ -1,7 +1,7 @@
 use clap::{App, Arg};
 use url::Url;
 
-use request::Method;
+use http::method::Method;
 
 #[derive(Debug)]
 pub struct Config {
@@ -10,6 +10,7 @@ pub struct Config {
 }
 
 pub fn parse() -> Config {
+    let default_method: Method = Default::default();
     let matches = App::new("hypha")
         .author(crate_authors!())
         .version(crate_version!())
@@ -18,7 +19,7 @@ pub fn parse() -> Config {
             .short("m")
             .long("method")
             .help("The HTTP method")
-            .default_value("GET"))
+            .default_value(default_method.as_ref()))
         .arg(Arg::with_name("url")
             .help("The URL")
             .required(true))

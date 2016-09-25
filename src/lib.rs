@@ -3,7 +3,7 @@ extern crate clap;
 extern crate url;
 
 pub mod config;
-pub mod request;
+pub mod http;
 
 use config::Config;
 
