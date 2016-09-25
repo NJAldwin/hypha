@@ -3,9 +3,10 @@ extern crate clap;
 extern crate url;
 
 pub mod config;
+pub mod request;
 
 use config::Config;
 
 pub fn run(conf: Config) {
-    println!("HYPHA\nURL: {}", conf.url);
+    println!("HYPHA\n{} {}", conf.method, conf.url);
 }
