@@ -5,3 +5,4 @@ authors = ["Nick Aldwin <nick@aldwin.us>"]
 
 [dependencies]
 clap = "2"
+url = "1"

@@ -1,5 +1,3 @@
-#[macro_use]
-extern crate clap;
 extern crate hypha;
 
 use hypha::config;
