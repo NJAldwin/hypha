@@ -11,8 +11,12 @@ use http::request::Request;
 
 pub fn run(conf: Config) {
     println!("HYPHA\n{} {}", conf.method, conf.url);
-    client::execute(Request {
+    match client::execute(Request {
         url: conf.url,
         method: conf.method,
-    });
+        version: Default::default(),
+    }) {
+        Err(err) => panic!("Error: {}", err),
+        Ok(result) => println!("{}", result),
+    }
 }
